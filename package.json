@@ -1,0 +1,58 @@
+{
+  "name": "rest-activity",
+  "version": "0.0.0-development",
+  "description": "A REST server for Github and Twitter activity",
+  "main": "src/index.js",
+  "scripts": {
+    "precommit": "npm run test:single && npm run check-coverage",
+    "start": "node $npm_package_main",
+    "commit": "git-cz",
+    "check-coverage": "istanbul check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
+    "report-coverage": "cat ./coverage/lcov.info | codecov",
+    "test": "mocha test/*.test.js -w",
+    "test:single": "istanbul cover -x test/*.test.js _mocha -- -R spec test/*.test.js",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jpcano/rest-activity.git"
+  },
+  "keywords": [
+    "github",
+    "activity",
+    "api"
+  ],
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "author": "Jesus Cano <jcanovel@gmail.com> (http://jesus.engineer/)",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/jpcano/rest-activity/issues"
+  },
+  "homepage": "https://github.com/jpcano/rest-activity#readme",
+  "dependencies": {
+    "gh-activity": "^1.0.0",
+    "twitter-activity": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "4.0.2",
+    "chai-http": "3.0.0",
+    "codecov.io": "0.1.6",
+    "commitizen": "2.9.6",
+    "cz-conventional-changelog": "2.0.0",
+    "husky": "0.14.3",
+    "istanbul": "0.4.5",
+    "mocha": "3.4.2",
+    "semantic-release": "^6.3.6"
+  },
+  "czConfig": {
+    "path": "node_modules/cz-conventional-changelog"
+  },
+  "config": {
+    "port": 8000,
+    "ghCount": 6,
+    "twCount": 4
+  }
+}
